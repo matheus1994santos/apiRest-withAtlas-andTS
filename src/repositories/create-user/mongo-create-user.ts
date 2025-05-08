@@ -5,7 +5,7 @@ import {
 import { MongoClient } from "../../database/mongo";
 import { User } from "../../models/user";
 
-export class MongoCreateUser implements ICreateUserRepository {
+export class MongoCreateUserRepository implements ICreateUserRepository {
   async createUser(params: CreateUserParams): Promise<User> {
     const { insertedId } = await MongoClient.db
       .collection("users")
@@ -13,14 +13,14 @@ export class MongoCreateUser implements ICreateUserRepository {
 
     const user = await MongoClient.db
       .collection<Omit<User, "id">>("users")
-      .findOne({ _Id: insertedId });
+      .findOne({ _id: insertedId });
 
     if (!user) {
       throw new Error("User not created");
     }
 
-    const { _Id, ...rest } = user;
+    const { _id, ...rest } = user;
 
-    return { id: _Id.toHexString(), ...rest };
+    return { id: _id.toHexString(), ...rest };
   }
 }
