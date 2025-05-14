@@ -6,7 +6,7 @@ import {
   IUpdanteUserRepository,
 } from "./protocols";
 
-export class UpdareUserController implements IUpdanteUserController {
+export class UpdateUserController implements IUpdanteUserController {
   constructor(private readonly updateUserRepository: IUpdanteUserRepository) {}
   async handle(httpRequest: HttpRequest<any>): Promise<HttpResponse<User>> {
     try {
