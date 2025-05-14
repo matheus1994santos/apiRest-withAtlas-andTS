@@ -6,7 +6,7 @@ import {
 import { MongoClient } from "../../database/mongo";
 import { User } from "../../models/user";
 
-export class MongoUpdadeUserRepository implements IUpdanteUserRepository {
+export class MongoUpdateUserRepository implements IUpdanteUserRepository {
   async updateUser(id: string, params: IUpdanteUserParams): Promise<User> {
     await MongoClient.db.collection("users").updateOne(
       { _id: new ObjectId(id) },
